@@ -93,5 +93,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.present(newSroryboard, animated: true, completion: nil)
     }
     
+    @IBAction func resetPasswordButton(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newSroryboard = storyboard.instantiateViewController(withIdentifier: "ResetVC") as! ResetPasswordVC
+        self.present(newSroryboard, animated: true, completion: nil)
+    }
+    
+    
 }
 

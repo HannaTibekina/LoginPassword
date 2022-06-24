@@ -18,7 +18,7 @@ class SuccessVC: UIViewController {
     }
     
     func createSuccessImege(){
-        successImage.image = UIImage(named: "Галочка")
+        successImage.image = UIImage(named: "Success")
     }
    
 

@@ -78,6 +78,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             registerPasswordYF.backgroundColor = normalBackgroundColor
             registerConfirmPasswordTF.backgroundColor = normalBackgroundColor
             registerWarningLabel.text = ""
+            let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
+            present(successStoryboard, animated: false, completion: nil)
         } else if registerEmailTF.text == regLogin{
             registerWarningLabel.text = "This email is already used by another user"
             regisretEmailImage.image = UIImage(named: "Крестик")
