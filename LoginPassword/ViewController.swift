@@ -9,9 +9,10 @@ import UIKit
 import SwiftUI
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    
+  
     var backgroundErrorColor = #colorLiteral(red: 0.9904245734, green: 0.8579052091, blue: 0.8648132682, alpha: 1)
     var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
+        
    // Начала построение первого экрана примерно в 17:40, закончила(вместе с констрейнтами) в 18:50. Начинаю программировать аутлеты. 20:00 закончила с проверкой пароля и логина, все лейблы настроены, бэкграунд колор настроен. Проблема былв с колорЛитерал& 23:12 начала разбираться с клавитатурой. Проблема: при тапе на тф нужно поменять его бекграунд
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var loginTF: UITextField!
@@ -35,7 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-       createlogoImage()
+        createlogoImage()
         loginTF.delegate = self
         passwordTF.delegate = self
         showKeyboard()
@@ -48,6 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             passwordLabel.text = "Password"
         }
     }
+  
     //Keyboard
     func showKeyboard(){
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { (nt) in
@@ -84,6 +86,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             loginTF.backgroundColor = backgroundErrorColor
             passwordTF.backgroundColor = backgroundErrorColor
         }
+    }
+    @IBAction func registerButton(_ sender: Any) {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newSroryboard = storyboard.instantiateViewController(withIdentifier: "RegisterVC") as! RegisterViewController
+        self.present(newSroryboard, animated: true, completion: nil)
     }
     
 }
