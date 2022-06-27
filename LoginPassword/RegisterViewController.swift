@@ -26,7 +26,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var registerWarningLabel: UILabel!
     
     
-    let regLogin = "fgh@gmail.com"
+ //   let regLogin = "fgh@gmail.com"
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,16 +70,84 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func registerContinueButton(_ sender: Any) {
-        if registerEmailTF.text != regLogin && registerPasswordYF.text == registerConfirmPasswordTF.text {
-            regisretEmailImage.image = UIImage(named: "Галочка")
-            registerPasswordImage.image = UIImage(named: "Галочка")
-            registerConfirmImage.image = UIImage(named: "Галочка")
-            registerEmailTF.backgroundColor = normalBackgroundColor
-            registerPasswordYF.backgroundColor = normalBackgroundColor
-            registerConfirmPasswordTF.backgroundColor = normalBackgroundColor
-            registerWarningLabel.text = ""
-            let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
-            present(successStoryboard, animated: false, completion: nil)
+    /*    guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
+        let session = URLSession.shared
+        session.dataTask(with: url) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            
+            guard let data = data else { return }
+            print(data)
+            do{
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
+            } catch {
+                print(error)
+            }
+            
+        }.resume()
+      */
+       
+        
+        if registerPasswordYF.text != registerConfirmPasswordTF.text {
+            registerWarningLabel.text = "Passwords are not similar"
+            return
+        } else if registerPasswordYF.text == "" || registerConfirmPasswordTF.text == "" || registerEmailTF.text == "" {
+            registerWarningLabel.text = "Fill in all the fields"
+            return
+        }
+      
+        guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
+        let parametrs = ["login": registerEmailTF.text, "password": registerPasswordYF.text]
+        print(parametrs)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parametrs, options: []) else { return }
+        request.httpBody = httpBody
+       
+        let session = URLSession.shared
+        session.dataTask(with: request) { [self] (data, response, error) in
+            if let response = response {
+            guard let data = data else { return }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+            } catch {
+                print(error)
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                print("STATUC CODE")
+                print(httpResponse.statusCode)
+                print("STATUC CODE")
+                if httpResponse.statusCode == 200 {
+                    regisretEmailImage.image = UIImage(named: "Галочка")
+                    registerPasswordImage.image = UIImage(named: "Галочка")
+                    registerConfirmImage.image = UIImage(named: "Галочка")
+                    registerEmailTF.backgroundColor = normalBackgroundColor
+                    registerPasswordYF.backgroundColor = normalBackgroundColor
+                    registerConfirmPasswordTF.backgroundColor = normalBackgroundColor
+                    registerWarningLabel.text = ""
+                    let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
+                    present(successStoryboard, animated: false, completion: nil)
+                } else {
+                    registerWarningLabel.text = ""
+                    regisretEmailImage.image = UIImage(named: "Крестик")
+                    registerPasswordImage.image = UIImage(named: "Крестик")
+                    registerConfirmImage.image = UIImage(named: "Крестик")
+                    registerEmailTF.backgroundColor = backgroundErrorColor
+                    registerPasswordYF.backgroundColor = backgroundErrorColor
+                    registerConfirmPasswordTF.backgroundColor = backgroundErrorColor
+             
+                }
+            }
+        }
+        }.resume()
+        
+      /*  GET
+       
+       
         } else if registerEmailTF.text == regLogin{
             registerWarningLabel.text = "This email is already used by another user"
             regisretEmailImage.image = UIImage(named: "Крестик")
@@ -96,7 +164,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             registerEmailTF.backgroundColor = normalBackgroundColor
             registerPasswordYF.backgroundColor = backgroundErrorColor
             registerConfirmPasswordTF.backgroundColor = backgroundErrorColor
-        }
+        }  */
     }
     
     @IBAction func switchToLoginButton(_ sender: Any) {
@@ -107,3 +175,4 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     
 }
+
