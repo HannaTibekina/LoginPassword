@@ -25,10 +25,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    
-    let login = "123@gmail.com"
-    let password = "qwerty"
-    
     // ImageView
     func createlogoImage() {
         logoImage.image = UIImage(named: "Лого")
@@ -70,22 +66,53 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func Continue(_ sender: Any) {
-        if loginTF.text == login && passwordTF.text == password{
-            imageLogin.image = UIImage(named: "Галочка")
-            imagePassword.image = UIImage(named: "Галочка")
-            loginTF.backgroundColor = normalBackgroundColor
-            passwordTF.backgroundColor = normalBackgroundColor
-            worningLabel.text = ""
-            // переход к successVC
-            let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
-            present(successStoryboard, animated: false, completion: nil)
-       } else {
-            imageLogin.image = UIImage(named: "Крестик")
-            imagePassword.image = UIImage(named: "Крестик")
-            worningLabel.text = "Incorrect email or password. Please try again"
-            loginTF.backgroundColor = backgroundErrorColor
-            passwordTF.backgroundColor = backgroundErrorColor
+        if loginTF.text == "" || passwordTF.text == "" {
+            worningLabel.text = "Passwords are not similar"
         }
+        guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
+        let parametrs = ["login": loginTF.text, "password": passwordTF.text]
+        print(parametrs)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parametrs, options: []) else { return }
+        request.httpBody = httpBody
+        let session = URLSession.shared
+        session.dataTask(with: request) { [self] (data, response, error) in
+            if let response = response {
+            guard let data = data else { return }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+            } catch {
+                print(error)
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                print("STATUC CODE")
+                print(httpResponse.statusCode)
+                print("STATUC CODE")
+                if httpResponse.statusCode == 200 {
+                    DispatchQueue.main.async { [self] in
+                    imageLogin.image = UIImage(named: "Галочка")
+                    imagePassword.image = UIImage(named: "Галочка")
+                    loginTF.backgroundColor = normalBackgroundColor
+                    passwordTF.backgroundColor = normalBackgroundColor
+                    worningLabel.text = ""
+                    let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
+                    present(successStoryboard, animated: false, completion: nil)
+                    }
+                } else {
+                    DispatchQueue.main.async { [self] in
+                        imageLogin.image = UIImage(named: "Крестик")
+                        imagePassword.image = UIImage(named: "Крестик")
+                        worningLabel.text = "Incorrect email or password. Please try again"
+                        loginTF.backgroundColor = backgroundErrorColor
+                        passwordTF.backgroundColor = backgroundErrorColor
+                        }
+                    }
+                }
+            }
+        }.resume()
     }
     @IBAction func registerButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

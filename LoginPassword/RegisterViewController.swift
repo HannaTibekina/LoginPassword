@@ -70,26 +70,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func registerContinueButton(_ sender: Any) {
-    /*    guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
-        let session = URLSession.shared
-        session.dataTask(with: url) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            
-            guard let data = data else { return }
-            print(data)
-            do{
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
-            } catch {
-                print(error)
-            }
-            
-        }.resume()
-      */
-       
-        
+
         if registerPasswordYF.text != registerConfirmPasswordTF.text {
             registerWarningLabel.text = "Passwords are not similar"
             return
@@ -107,7 +88,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parametrs, options: []) else { return }
         request.httpBody = httpBody
-       
         let session = URLSession.shared
         session.dataTask(with: request) { [self] (data, response, error) in
             if let response = response {
@@ -122,6 +102,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 print(httpResponse.statusCode)
                 print("STATUC CODE")
                 if httpResponse.statusCode == 200 {
+                    DispatchQueue.main.async { [self] in
                     regisretEmailImage.image = UIImage(named: "Галочка")
                     registerPasswordImage.image = UIImage(named: "Галочка")
                     registerConfirmImage.image = UIImage(named: "Галочка")
@@ -129,42 +110,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     registerPasswordYF.backgroundColor = normalBackgroundColor
                     registerConfirmPasswordTF.backgroundColor = normalBackgroundColor
                     registerWarningLabel.text = ""
-                    let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
+                    let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "succuesResetPassword") as! SuccessChangePassword
                     present(successStoryboard, animated: false, completion: nil)
+                    }
                 } else {
-                    registerWarningLabel.text = ""
+                    DispatchQueue.main.async { [self] in
+                        registerWarningLabel.text = ""
                     regisretEmailImage.image = UIImage(named: "Крестик")
                     registerPasswordImage.image = UIImage(named: "Крестик")
                     registerConfirmImage.image = UIImage(named: "Крестик")
                     registerEmailTF.backgroundColor = backgroundErrorColor
                     registerPasswordYF.backgroundColor = backgroundErrorColor
                     registerConfirmPasswordTF.backgroundColor = backgroundErrorColor
-             
+                    }
                 }
             }
         }
         }.resume()
-        
-      /*  GET
-       
-       
-        } else if registerEmailTF.text == regLogin{
-            registerWarningLabel.text = "This email is already used by another user"
-            regisretEmailImage.image = UIImage(named: "Крестик")
-            registerPasswordImage.image = UIImage(named: "Крестик")
-            registerConfirmImage.image = UIImage(named: "Крестик")
-            registerEmailTF.backgroundColor = backgroundErrorColor
-            registerPasswordYF.backgroundColor = backgroundErrorColor
-            registerConfirmPasswordTF.backgroundColor = backgroundErrorColor
-        } else if registerEmailTF.text != regLogin && registerPasswordYF.text != registerConfirmPasswordTF.text{
-            registerWarningLabel.text = "Password is incorrect"
-            regisretEmailImage.image = UIImage(named: "Галочка")
-            registerPasswordImage.image = UIImage(named: "Крестик")
-            registerConfirmImage.image = UIImage(named: "Крестик")
-            registerEmailTF.backgroundColor = normalBackgroundColor
-            registerPasswordYF.backgroundColor = backgroundErrorColor
-            registerConfirmPasswordTF.backgroundColor = backgroundErrorColor
-        }  */
     }
     
     @IBAction func switchToLoginButton(_ sender: Any) {

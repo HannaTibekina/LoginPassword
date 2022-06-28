@@ -19,6 +19,7 @@
 		EB7E340A2866095700350648 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E34092866095700350648 /* ResetPasswordVC.swift */; };
 		EB7E340C2866140200350648 /* SuccessChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E340B2866140200350648 /* SuccessChangePassword.swift */; };
 		EB7E340E28661BB600350648 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E340D28661BB600350648 /* ChangePassword.swift */; };
+		EB7E3410286A0B3300350648 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E340F286A0B3300350648 /* Comments.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		EB7E34092866095700350648 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		EB7E340B2866140200350648 /* SuccessChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessChangePassword.swift; sourceTree = "<group>"; };
 		EB7E340D28661BB600350648 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		EB7E340F286A0B3300350648 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				EB7E33EC2864B8C500350648 /* AppDelegate.swift */,
 				EB7E33EE2864B8C500350648 /* SceneDelegate.swift */,
+				EB7E340F286A0B3300350648 /* Comments.swift */,
 				EB7E33F02864B8C500350648 /* ViewController.swift */,
 				EB7E34092866095700350648 /* ResetPasswordVC.swift */,
 				EB7E340B2866140200350648 /* SuccessChangePassword.swift */,
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB7E340C2866140200350648 /* SuccessChangePassword.swift in Sources */,
+				EB7E3410286A0B3300350648 /* Comments.swift in Sources */,
 				EB7E340E28661BB600350648 /* ChangePassword.swift in Sources */,
 				EB7E34042865E17200350648 /* SuccessVC.swift in Sources */,
 				EB7E33F12864B8C500350648 /* ViewController.swift in Sources */,

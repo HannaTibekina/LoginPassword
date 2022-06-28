@@ -620,20 +620,22 @@
                         <viewLayoutGuide key="safeArea" id="hIk-Z4-QUx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="hIk-Z4-QUx" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mPI-vI-QEr" secondAttribute="trailing" symbolic="YES" id="0r9-xs-EKo"/>
                             <constraint firstItem="GG3-wM-QvF" firstAttribute="centerX" secondItem="Q55-RT-Ppf" secondAttribute="centerX" id="37Z-5U-fbx"/>
                             <constraint firstItem="mPI-vI-QEr" firstAttribute="top" secondItem="GG3-wM-QvF" secondAttribute="bottom" constant="27" id="7Me-vf-5cy"/>
                             <constraint firstItem="GG3-wM-QvF" firstAttribute="centerX" secondItem="YqQ-8E-mf6" secondAttribute="centerX" id="9Cd-N5-9W6"/>
-                            <constraint firstItem="GG3-wM-QvF" firstAttribute="leading" secondItem="hja-b8-UNu" secondAttribute="leading" id="Dez-o8-fRO"/>
-                            <constraint firstItem="GG3-wM-QvF" firstAttribute="leading" secondItem="mPI-vI-QEr" secondAttribute="leading" id="Enh-nq-LEz"/>
-                            <constraint firstItem="GG3-wM-QvF" firstAttribute="leading" secondItem="rIW-4S-9WD" secondAttribute="leading" id="GoO-PU-0Qc"/>
+                            <constraint firstItem="RFy-kf-kYb" firstAttribute="leading" secondItem="GG3-wM-QvF" secondAttribute="leading" id="9Qk-hM-OKp"/>
+                            <constraint firstItem="RFy-kf-kYb" firstAttribute="leading" secondItem="rIW-4S-9WD" secondAttribute="leading" id="Bef-fh-x4i"/>
+                            <constraint firstItem="RFy-kf-kYb" firstAttribute="leading" secondItem="mPI-vI-QEr" secondAttribute="leading" id="Dwe-HV-p0n"/>
+                            <constraint firstItem="RFy-kf-kYb" firstAttribute="leading" secondItem="hja-b8-UNu" secondAttribute="leading" id="FNe-7t-aVN"/>
                             <constraint firstItem="hIk-Z4-QUx" firstAttribute="trailing" secondItem="3T2-fc-BXz" secondAttribute="trailing" constant="31" id="QTM-WC-Dd1"/>
                             <constraint firstItem="Q55-RT-Ppf" firstAttribute="leading" secondItem="YqQ-8E-mf6" secondAttribute="leading" id="Qhf-my-qtb"/>
                             <constraint firstItem="hja-b8-UNu" firstAttribute="top" secondItem="3T2-fc-BXz" secondAttribute="bottom" constant="15" id="S81-Z9-bsQ"/>
                             <constraint firstItem="RFy-kf-kYb" firstAttribute="top" secondItem="rIW-4S-9WD" secondAttribute="bottom" constant="8" symbolic="YES" id="ZLg-nG-FOO"/>
                             <constraint firstItem="3T2-fc-BXz" firstAttribute="top" secondItem="hIk-Z4-QUx" secondAttribute="top" constant="460" id="aSV-ES-Gjp"/>
+                            <constraint firstItem="RFy-kf-kYb" firstAttribute="trailing" secondItem="hja-b8-UNu" secondAttribute="trailing" id="cXQ-Iy-hmG"/>
                             <constraint firstItem="3T2-fc-BXz" firstAttribute="leading" secondItem="hIk-Z4-QUx" secondAttribute="leading" constant="367" id="ff7-c2-DSm"/>
-                            <constraint firstItem="GG3-wM-QvF" firstAttribute="trailing" secondItem="hja-b8-UNu" secondAttribute="trailing" id="g5n-kS-Ehl"/>
-                            <constraint firstItem="GG3-wM-QvF" firstAttribute="leading" secondItem="RFy-kf-kYb" secondAttribute="leading" id="nT4-0q-pLC"/>
+                            <constraint firstItem="hIk-Z4-QUx" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rIW-4S-9WD" secondAttribute="trailing" symbolic="YES" id="m8d-0R-jeg"/>
                             <constraint firstItem="GG3-wM-QvF" firstAttribute="leading" secondItem="bwn-t8-7yd" secondAttribute="leadingMargin" id="oGB-JS-cmb"/>
                             <constraint firstItem="YqQ-8E-mf6" firstAttribute="top" secondItem="Q55-RT-Ppf" secondAttribute="bottom" constant="26" id="sjR-WC-YQi"/>
                             <constraint firstItem="GG3-wM-QvF" firstAttribute="top" secondItem="hja-b8-UNu" secondAttribute="bottom" constant="8" symbolic="YES" id="ucX-vJ-xSC"/>
