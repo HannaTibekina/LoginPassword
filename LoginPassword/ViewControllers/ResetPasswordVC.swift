@@ -14,8 +14,8 @@ class ResetPasswordVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resetEmailImage: UIImageView!
     @IBOutlet weak var resetEmailLabel: UILabel!
     @IBOutlet weak var resetWarningLabel: UILabel!
-    @IBOutlet weak var resetContinOutletButton: UIButton!
     @IBOutlet weak var backToLoginButton: UIButton!
+    @IBOutlet weak var resetComtinueButtonOutlet: LoadingButton!
     
     let login = ["123@gmail.com"]
     
@@ -40,8 +40,8 @@ class ResetPasswordVC: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { (nt) in
             self.view.frame.origin.y = -200
             self.resetImage.image = nil
-            self.resetContinOutletButton.titleLabel?.text = "Submit"
-            self.resetContinOutletButton.backgroundColor = #colorLiteral(red: 0, green: 4.493939196e-05, blue: 0.4588931799, alpha: 1)
+            self.resetComtinueButtonOutlet.titleLabel?.text = "Submit"
+            self.resetComtinueButtonOutlet.backgroundColor = #colorLiteral(red: 0, green: 4.493939196e-05, blue: 0.4588931799, alpha: 1)
             self.backToLoginButton.titleLabel?.text = "Back to Login"
             
             
@@ -59,6 +59,7 @@ class ResetPasswordVC: UIViewController, UITextFieldDelegate {
     var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
     
     @IBAction func resetContinButton(_ sender: Any) {
+        resetComtinueButtonOutlet.showLoading()
         if login.contains(resetEmailTF.text!) {
             resetEmailImage.image = UIImage(named: "Галочка")
             resetEmailTF.backgroundColor = normalBackgroundColor
@@ -72,12 +73,13 @@ class ResetPasswordVC: UIViewController, UITextFieldDelegate {
             resetEmailTF.backgroundColor = backgroundErrorColor
             resetWarningLabel.text = "Something went wrong. Please try again"
         }
+        self.resetComtinueButtonOutlet.hideLoading()
     }
     
     @IBAction func resetSwitchToLoginButton(_ sender: Any) {
-   /*     let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newSroryboard = storyboard.instantiateViewController(withIdentifier: "succuesResetPassword") as! SuccessChangePassword
-        self.present(newSroryboard, animated: true, completion: nil) */
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newSroryboard = storyboard.instantiateViewController(withIdentifier: "FirstVC") as! ViewController
+        self.present(newSroryboard, animated: true, completion: nil)
     }
     
 

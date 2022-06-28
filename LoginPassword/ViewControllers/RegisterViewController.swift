@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import Foundation
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     
     var backgroundErrorColor = #colorLiteral(red: 0.9904245734, green: 0.8579052091, blue: 0.8648132682, alpha: 1)
     var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
+    var editingColor = #colorLiteral(red: 0.8653588891, green: 0.9153295159, blue: 0.9958277345, alpha: 1)
+    let activityIndicate = UIActivityIndicatorView()
+    
         
     @IBOutlet weak var registerImage: UIImageView!
     @IBOutlet weak var registerEmailTF: UITextField!
@@ -24,9 +28,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var registerPasswordImage: UIImageView!
     @IBOutlet weak var registerConfirmImage: UIImageView!
     @IBOutlet weak var registerWarningLabel: UILabel!
+    @IBOutlet weak var registerContinueButtonOutlet: LoadingButton!
     
-    
- //   let regLogin = "fgh@gmail.com"
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +38,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         registerEmailTF.delegate = self
         registerPasswordYF.delegate = self
         registerConfirmPasswordTF.delegate = self
-        
- }
+       // LoadingButton()
+    }
+    func createActivity() {
+        activityIndicate.hidesWhenStopped = true
+        activityIndicate.backgroundColor = UIColor.white
+        view.addSubview(activityIndicate)
+        activityIndicate.startAnimating()
+    }
     func createImageRegister(){
         registerImage.image = UIImage(named: "Лого")
     }
@@ -66,11 +75,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
-    
-    
-    @IBAction func registerContinueButton(_ sender: Any) {
-
+    @IBAction func registerContinueButton(_ sender: UIButton) {
+        
         if registerPasswordYF.text != registerConfirmPasswordTF.text {
             registerWarningLabel.text = "Passwords are not similar"
             return
@@ -78,14 +84,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             registerWarningLabel.text = "Fill in all the fields"
             return
         }
-      
+        
+        registerContinueButtonOutlet.showLoading()
+        
         guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
         let parametrs = ["login": registerEmailTF.text, "password": registerPasswordYF.text]
         print(parametrs)
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
         guard let httpBody = try? JSONSerialization.data(withJSONObject: parametrs, options: []) else { return }
         request.httpBody = httpBody
         let session = URLSession.shared
@@ -102,6 +109,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 print(httpResponse.statusCode)
                 print("STATUC CODE")
                 if httpResponse.statusCode == 200 {
+                    
                     DispatchQueue.main.async { [self] in
                     regisretEmailImage.image = UIImage(named: "Галочка")
                     registerPasswordImage.image = UIImage(named: "Галочка")
@@ -112,6 +120,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     registerWarningLabel.text = ""
                     let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "succuesResetPassword") as! SuccessChangePassword
                     present(successStoryboard, animated: false, completion: nil)
+                        
                     }
                 } else {
                     DispatchQueue.main.async { [self] in
@@ -126,6 +135,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+            self.registerContinueButtonOutlet.hideLoading()
         }.resume()
     }
     

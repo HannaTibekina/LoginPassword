@@ -57,7 +57,7 @@
                                     <constraint firstAttribute="height" constant="19" id="w1E-nm-dU8"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzi-OX-bCs">
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzi-OX-bCs" customClass="LoadingButton" customModule="LoginPassword" customModuleProvider="target">
                                 <rect key="frame" x="20" y="626" width="374" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="374" id="QFR-o3-vbh"/>
@@ -171,6 +171,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueOutlet" destination="Hzi-OX-bCs" id="N9B-d4-a1E"/>
                         <outlet property="imageLogin" destination="pKv-NB-tYD" id="19u-gN-O9a"/>
                         <outlet property="imagePassword" destination="dkc-Fa-FsY" id="1OR-Sm-hId"/>
                         <outlet property="loginLabe" destination="Gum-lp-dKL" id="HGU-VJ-BYs"/>
@@ -251,7 +252,7 @@
                                     <constraint firstAttribute="height" constant="19" id="6kD-SZ-OG5"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeD-Am-mvX">
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeD-Am-mvX" customClass="LoadingButton" customModule="LoginPassword" customModuleProvider="target">
                                 <rect key="frame" x="20" y="695" width="374" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="CxJ-x1-scH"/>
@@ -370,6 +371,7 @@
                         <outlet property="registerConfirmImage" destination="uDo-6z-Uxt" id="icu-hB-Qmp"/>
                         <outlet property="registerConfirmLabel" destination="j7p-Er-rGN" id="6Gj-Lt-k3d"/>
                         <outlet property="registerConfirmPasswordTF" destination="FeN-y4-ufb" id="A8l-Qr-eif"/>
+                        <outlet property="registerContinueButtonOutlet" destination="qeD-Am-mvX" id="b9l-I5-p1x"/>
                         <outlet property="registerEmailTF" destination="BN3-s2-03m" id="OfV-mp-0Hr"/>
                         <outlet property="registerImage" destination="l5d-D7-Md5" id="JI2-4S-Af9"/>
                         <outlet property="registerPasswordImage" destination="2Cm-n4-yYl" id="qeN-SB-d7e"/>
@@ -559,7 +561,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-wM-QvF">
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GG3-wM-QvF" customClass="LoadingButton" customModule="LoginPassword" customModuleProvider="target">
                                 <rect key="frame" x="20" y="567" width="374" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="KBb-aU-0dA"/>
@@ -645,7 +647,7 @@
                     </view>
                     <connections>
                         <outlet property="backToLoginButton" destination="mPI-vI-QEr" id="DBN-0O-zT6"/>
-                        <outlet property="resetContinOutletButton" destination="GG3-wM-QvF" id="b4d-EG-HA1"/>
+                        <outlet property="resetComtinueButtonOutlet" destination="GG3-wM-QvF" id="jb5-RR-kJR"/>
                         <outlet property="resetEmailImage" destination="3T2-fc-BXz" id="Dfa-fu-LXc"/>
                         <outlet property="resetEmailLabel" destination="rIW-4S-9WD" id="37B-FX-BbN"/>
                         <outlet property="resetEmailTF" destination="RFy-kf-kYb" id="c3c-w7-YmH"/>
@@ -714,7 +716,7 @@
                                     <constraint firstAttribute="width" constant="16" id="xv3-ts-RTr"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsC-EN-QgD">
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsC-EN-QgD" customClass="LoadingButton" customModule="LoginPassword" customModuleProvider="target">
                                 <rect key="frame" x="20" y="623" width="374" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="iIE-rs-I5b"/>
@@ -835,6 +837,7 @@
                         <outlet property="chPPasswordTF" destination="2nN-Se-o9e" id="Xfp-2F-ayS"/>
                         <outlet property="chPWarningLabel" destination="a49-hX-xuR" id="AoF-Qk-5yb"/>
                         <outlet property="chpConfirmImage" destination="Zhf-v4-C7a" id="plc-Ya-IbD"/>
+                        <outlet property="chpContinueOutlet" destination="nsC-EN-QgD" id="Dne-5i-d4d"/>
                         <outlet property="chpPasswordImage" destination="6aj-5b-R2a" id="fJJ-8c-NkL"/>
                     </connections>
                 </viewController>

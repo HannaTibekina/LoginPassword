@@ -19,6 +19,7 @@ class ChangePassword: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var chpConfirmImage: UIImageView!
     
+    @IBOutlet weak var chpContinueOutlet: LoadingButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,14 +57,14 @@ class ChangePassword: UIViewController, UITextFieldDelegate{
     var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
     
     @IBAction func chpContinueButton(_ sender: Any) {
+        chpContinueOutlet.showLoading()
         if chPPasswordTF.text == chPConfirmPasswordTF.text{
-            // Добавить в базу
             chpPasswordImage.image = UIImage(named: "Галочка")
             chpConfirmImage.image = UIImage(named: "Галочка")
             chPPasswordTF.backgroundColor = normalBackgroundColor
             chPConfirmPasswordTF.backgroundColor = normalBackgroundColor
             chPWarningLabel.text = ""
-            // переход
+            
             let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
             present(successStoryboard, animated: false, completion: nil)
         } else {
@@ -73,6 +74,7 @@ class ChangePassword: UIViewController, UITextFieldDelegate{
             chPConfirmPasswordTF.backgroundColor = backgroundErrorColor
             chPWarningLabel.text = "Somethig went wrong. Please try again"
         }
+        self.chpContinueOutlet.hideLoading()
     }
     
     @IBAction func backButton(_ sender: Any) {

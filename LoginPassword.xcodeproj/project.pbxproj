@@ -20,6 +20,7 @@
 		EB7E340C2866140200350648 /* SuccessChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E340B2866140200350648 /* SuccessChangePassword.swift */; };
 		EB7E340E28661BB600350648 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E340D28661BB600350648 /* ChangePassword.swift */; };
 		EB7E3410286A0B3300350648 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E340F286A0B3300350648 /* Comments.swift */; };
+		EB7E3414286B038B00350648 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E3413286B038B00350648 /* LoadingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		EB7E340B2866140200350648 /* SuccessChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessChangePassword.swift; sourceTree = "<group>"; };
 		EB7E340D28661BB600350648 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
 		EB7E340F286A0B3300350648 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		EB7E3413286B038B00350648 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,15 +72,11 @@
 		EB7E33EB2864B8C500350648 /* LoginPassword */ = {
 			isa = PBXGroup;
 			children = (
+				EB7E3411286B032F00350648 /* ViewControllers */,
 				EB7E33EC2864B8C500350648 /* AppDelegate.swift */,
 				EB7E33EE2864B8C500350648 /* SceneDelegate.swift */,
 				EB7E340F286A0B3300350648 /* Comments.swift */,
-				EB7E33F02864B8C500350648 /* ViewController.swift */,
-				EB7E34092866095700350648 /* ResetPasswordVC.swift */,
-				EB7E340B2866140200350648 /* SuccessChangePassword.swift */,
-				EB7E340D28661BB600350648 /* ChangePassword.swift */,
-				EB7E34052865E88300350648 /* RegisterViewController.swift */,
-				EB7E34032865E17200350648 /* SuccessVC.swift */,
+				EB7E3412286B036500350648 /* Settings */,
 				EB7E33F22864B8C500350648 /* Main.storyboard */,
 				EB7E33F82864B8C600350648 /* Assets.xcassets */,
 				EB7E33FA2864B8C600350648 /* LaunchScreen.storyboard */,
@@ -86,6 +84,27 @@
 				EB7E33F52864B8C500350648 /* LoginPassword.xcdatamodeld */,
 			);
 			path = LoginPassword;
+			sourceTree = "<group>";
+		};
+		EB7E3411286B032F00350648 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB7E33F02864B8C500350648 /* ViewController.swift */,
+				EB7E34092866095700350648 /* ResetPasswordVC.swift */,
+				EB7E340D28661BB600350648 /* ChangePassword.swift */,
+				EB7E34052865E88300350648 /* RegisterViewController.swift */,
+				EB7E340B2866140200350648 /* SuccessChangePassword.swift */,
+				EB7E34032865E17200350648 /* SuccessVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		EB7E3412286B036500350648 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EB7E3413286B038B00350648 /* LoadingButton.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +184,7 @@
 				EB7E34042865E17200350648 /* SuccessVC.swift in Sources */,
 				EB7E33F12864B8C500350648 /* ViewController.swift in Sources */,
 				EB7E33ED2864B8C500350648 /* AppDelegate.swift in Sources */,
+				EB7E3414286B038B00350648 /* LoadingButton.swift in Sources */,
 				EB7E34062865E88300350648 /* RegisterViewController.swift in Sources */,
 				EB7E340A2866095700350648 /* ResetPasswordVC.swift in Sources */,
 				EB7E33F72864B8C500350648 /* LoginPassword.xcdatamodeld in Sources */,

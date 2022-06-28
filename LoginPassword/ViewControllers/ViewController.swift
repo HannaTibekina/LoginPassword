@@ -13,7 +13,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var backgroundErrorColor = #colorLiteral(red: 0.9904245734, green: 0.8579052091, blue: 0.8648132682, alpha: 1)
     var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
         
-   // Начала построение первого экрана примерно в 17:40, закончила(вместе с констрейнтами) в 18:50. Начинаю программировать аутлеты. 20:00 закончила с проверкой пароля и логина, все лейблы настроены, бэкграунд колор настроен. Проблема былв с колорЛитерал& 23:12 начала разбираться с клавитатурой. Проблема: при тапе на тф нужно поменять его бекграунд
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var loginTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
@@ -22,6 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var worningLabel: UILabel!
     @IBOutlet weak var loginLabe: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var continueOutlet: LoadingButton!
     
     
     
@@ -39,12 +39,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
  }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    
+  /* func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.isEditing == true{
+        if loginTF.hasText || passwordTF.hasText {
+            loginLabe.text = "Email"
+            passwordLabel.text = "Password"
+            loginTF.backgroundColor = UIColor.blue
+        }
+        }
+    } */
+  /*  func textFieldDidEndEditing(_ textField: UITextField) {
         if loginTF.hasText || passwordTF.hasText {
             loginLabe.text = "Email"
             passwordLabel.text = "Password"
         }
-    }
+        } */
   
     //Keyboard
     func showKeyboard(){
@@ -69,6 +80,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if loginTF.text == "" || passwordTF.text == "" {
             worningLabel.text = "Passwords are not similar"
         }
+        continueOutlet.showLoading()
         guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
         let parametrs = ["login": loginTF.text, "password": passwordTF.text]
         print(parametrs)
@@ -112,6 +124,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             }
+            self.continueOutlet.hideLoading()
         }.resume()
     }
     @IBAction func registerButton(_ sender: Any) {
