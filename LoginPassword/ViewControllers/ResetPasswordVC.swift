@@ -43,8 +43,6 @@ class ResetPasswordVC: UIViewController, UITextFieldDelegate {
             self.resetComtinueButtonOutlet.titleLabel?.text = "Submit"
             self.resetComtinueButtonOutlet.backgroundColor = #colorLiteral(red: 0, green: 4.493939196e-05, blue: 0.4588931799, alpha: 1)
             self.backToLoginButton.titleLabel?.text = "Back to Login"
-            
-            
         }
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { (nt) in
                 self.view.frame.origin.y = 0.0
@@ -55,24 +53,48 @@ class ResetPasswordVC: UIViewController, UITextFieldDelegate {
        resetEmailTF.resignFirstResponder()
        return true
     }
-    var backgroundErrorColor = #colorLiteral(red: 0.9904245734, green: 0.8579052091, blue: 0.8648132682, alpha: 1)
-    var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
     
     @IBAction func resetContinButton(_ sender: Any) {
         resetComtinueButtonOutlet.showLoading()
-        if login.contains(resetEmailTF.text!) {
+        guard let url = URL(string: "https://pfl.hasitschka.at/auth/signup") else { return }
+        let parametrs = ["login": resetEmailTF.text]
+        print(parametrs)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parametrs, options: []) else { return }
+        request.httpBody = httpBody
+        let session = URLSession.shared
+        session.dataTask(with: request) { [self] (data, response, error) in
+            if let response = response {
+            guard let data = data else { return }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+            } catch {
+                print(error)
+            }
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    DispatchQueue.main.async { [self] in
             resetEmailImage.image = UIImage(named: "Галочка")
-            resetEmailTF.backgroundColor = normalBackgroundColor
+                        resetEmailTF.backgroundColor = Colors().normalBackgroundColor
             resetWarningLabel.text = "We'll send you a letter to your email to reset password."
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let newSroryboard = storyboard.instantiateViewController(withIdentifier: "succuesResetPassword") as! SuccessChangePassword
             self.present(newSroryboard, animated: true, completion: nil)
-            
-        } else {
+                    }
+                    } else {
+                        DispatchQueue.main.async { [self] in
             resetEmailImage.image = UIImage(named: "Крестик")
-            resetEmailTF.backgroundColor = backgroundErrorColor
+            resetEmailTF.backgroundColor = Colors().backgroundErrorColor
             resetWarningLabel.text = "Something went wrong. Please try again"
+                        }
         }
+    }
+            }
+            
+        }.resume()
         self.resetComtinueButtonOutlet.hideLoading()
     }
     

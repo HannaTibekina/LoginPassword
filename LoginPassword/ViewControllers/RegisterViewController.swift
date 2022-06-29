@@ -10,12 +10,6 @@ import Foundation
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
-    
-    var backgroundErrorColor = #colorLiteral(red: 0.9904245734, green: 0.8579052091, blue: 0.8648132682, alpha: 1)
-    var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
-    var editingColor = #colorLiteral(red: 0.8653588891, green: 0.9153295159, blue: 0.9958277345, alpha: 1)
-    let activityIndicate = UIActivityIndicatorView()
-    
         
     @IBOutlet weak var registerImage: UIImageView!
     @IBOutlet weak var registerEmailTF: UITextField!
@@ -38,14 +32,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         registerEmailTF.delegate = self
         registerPasswordYF.delegate = self
         registerConfirmPasswordTF.delegate = self
-       // LoadingButton()
     }
-    func createActivity() {
-        activityIndicate.hidesWhenStopped = true
-        activityIndicate.backgroundColor = UIColor.white
-        view.addSubview(activityIndicate)
-        activityIndicate.startAnimating()
-    }
+
     func createImageRegister(){
         registerImage.image = UIImage(named: "Лого")
     }
@@ -114,9 +102,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     regisretEmailImage.image = UIImage(named: "Галочка")
                     registerPasswordImage.image = UIImage(named: "Галочка")
                     registerConfirmImage.image = UIImage(named: "Галочка")
-                    registerEmailTF.backgroundColor = normalBackgroundColor
-                    registerPasswordYF.backgroundColor = normalBackgroundColor
-                    registerConfirmPasswordTF.backgroundColor = normalBackgroundColor
+                    registerEmailTF.backgroundColor = Colors().normalBackgroundColor
+                    registerPasswordYF.backgroundColor = Colors().normalBackgroundColor
+                    registerConfirmPasswordTF.backgroundColor = Colors().normalBackgroundColor
                     registerWarningLabel.text = ""
                     let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "succuesResetPassword") as! SuccessChangePassword
                     present(successStoryboard, animated: false, completion: nil)
@@ -128,15 +116,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     regisretEmailImage.image = UIImage(named: "Крестик")
                     registerPasswordImage.image = UIImage(named: "Крестик")
                     registerConfirmImage.image = UIImage(named: "Крестик")
-                    registerEmailTF.backgroundColor = backgroundErrorColor
-                    registerPasswordYF.backgroundColor = backgroundErrorColor
-                    registerConfirmPasswordTF.backgroundColor = backgroundErrorColor
+                        registerEmailTF.backgroundColor = Colors().backgroundErrorColor
+                    registerPasswordYF.backgroundColor = Colors().backgroundErrorColor
+                    registerConfirmPasswordTF.backgroundColor = Colors().backgroundErrorColor
                     }
                 }
             }
         }
-            self.registerContinueButtonOutlet.hideLoading()
         }.resume()
+        self.registerContinueButtonOutlet.hideLoading()
     }
     
     @IBAction func switchToLoginButton(_ sender: Any) {

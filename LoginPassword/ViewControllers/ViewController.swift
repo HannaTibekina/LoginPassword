@@ -7,11 +7,10 @@
 
 import UIKit
 import SwiftUI
+import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
   
-    var backgroundErrorColor = #colorLiteral(red: 0.9904245734, green: 0.8579052091, blue: 0.8648132682, alpha: 1)
-    var normalBackgroundColor = #colorLiteral(red: 0.9677422643, green: 0.9727137685, blue: 0.9726259112, alpha: 1)
         
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var loginTF: UITextField!
@@ -24,8 +23,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var continueOutlet: LoadingButton!
     
     
-    
-    // ImageView
     func createlogoImage() {
         logoImage.image = UIImage(named: "Лого")
     }
@@ -36,26 +33,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginTF.delegate = self
         passwordTF.delegate = self
         showKeyboard()
-        
+        Colors()
  }
-    
-    
-    
-  /* func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.isEditing == true{
-        if loginTF.hasText || passwordTF.hasText {
-            loginLabe.text = "Email"
-            passwordLabel.text = "Password"
-            loginTF.backgroundColor = UIColor.blue
-        }
-        }
-    } */
-  /*  func textFieldDidEndEditing(_ textField: UITextField) {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if loginTF.hasText || passwordTF.hasText {
             loginLabe.text = "Email"
             passwordLabel.text = "Password"
         }
-        } */
+        }
   
     //Keyboard
     func showKeyboard(){
@@ -73,9 +59,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTF.resignFirstResponder()
         return true
     }
-   
-    
-
+  
     @IBAction func Continue(_ sender: Any) {
         if loginTF.text == "" || passwordTF.text == "" {
             worningLabel.text = "Passwords are not similar"
@@ -107,8 +91,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     DispatchQueue.main.async { [self] in
                     imageLogin.image = UIImage(named: "Галочка")
                     imagePassword.image = UIImage(named: "Галочка")
-                    loginTF.backgroundColor = normalBackgroundColor
-                    passwordTF.backgroundColor = normalBackgroundColor
+                        loginTF.backgroundColor = Colors().normalBackgroundColor
+                        passwordTF.backgroundColor = Colors().normalBackgroundColor
                     worningLabel.text = ""
                     let successStoryboard = storyboard?.instantiateViewController(withIdentifier: "SuccessView") as! SuccessVC
                     present(successStoryboard, animated: false, completion: nil)
@@ -118,14 +102,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         imageLogin.image = UIImage(named: "Крестик")
                         imagePassword.image = UIImage(named: "Крестик")
                         worningLabel.text = "Incorrect email or password. Please try again"
-                        loginTF.backgroundColor = backgroundErrorColor
-                        passwordTF.backgroundColor = backgroundErrorColor
+                        loginTF.backgroundColor = Colors().backgroundErrorColor
+                        passwordTF.backgroundColor = Colors().backgroundErrorColor
                         }
                     }
                 }
             }
-            self.continueOutlet.hideLoading()
         }.resume()
+        self.continueOutlet.hideLoading()
     }
     @IBAction func registerButton(_ sender: Any) {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
